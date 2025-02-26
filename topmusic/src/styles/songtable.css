@@ -1,0 +1,46 @@
+.content-Table{
+    border-collapse: collapse;
+    margin: 25px auto;
+    font-size: 1.2em;
+    min-width: 400px;
+    border-radius: 7px 7px 0 0;
+    overflow: hidden;
+    width: 90%;
+    max-width: 1700px;
+    
+}
+
+.content-Table thead tr{
+    background-color:seagreen;
+    text-align: left;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.content-Table th,
+.content-Table td {
+    padding: 12px 15px;
+    border: 0.4px solid seagreen;
+}
+
+.content-Table th{
+    font-size: 1.4em;
+    color: white;
+}
+
+.content-Table tbody tr{
+    border-bottom: 1px solid #dddd;
+}
+
+.content-Table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.content-Table tbody tr:last-of-type{
+    border-bottom: 2px solid #009879;
+}
+
+#rankingN{
+    font-size: 3em;
+    font-weight: 600;
+}
