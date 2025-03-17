@@ -27,6 +27,7 @@ jobs:
 
     - name: Run tests
       run: |
+        cd tests
         pytest test_api.py -v
 
     - name: Upload test results
