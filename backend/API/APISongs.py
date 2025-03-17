@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import mysql.connector
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
+import time
 
 app = FastAPI()
 
@@ -36,3 +37,4 @@ def get_songs():
     songs = cursor.fetchall()
     cursor.close()
     return [{"ranking": ranking, "song": song, "artist": artist, "image_url": image_url} for ranking, song, artist, image_url in songs]
+   

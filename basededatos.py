@@ -10,4 +10,5 @@ mydb=mysql.connector.Connect(
 
 cursor= mydb.cursor()
 cursor.execute('USE MUSIC')
-cursor.execute('CREATE TABLE Billboard(ranking INT(15), song VARCHAR(150), artist VARCHAR(150), image_url VARCHAR(200), extraction_date VARCHAR(80))')
+cursor.execute('CREATE TABLE Billboard(ranking INT(15), song VARCHAR(150), artist VARCHAR(150), image_url VARCHAR(200))')
+cursor.close()
