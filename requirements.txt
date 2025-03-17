@@ -7,4 +7,4 @@ Requests==2.32.3
 spotipy==2.25.0
 pluggy
 httpx
-
+mysql-connector-python==9.2.0
