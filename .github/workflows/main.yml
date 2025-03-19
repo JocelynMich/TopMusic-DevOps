@@ -16,7 +16,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: K1m_D0kja20KAJ2M
           MYSQL_DATABASE: MUSIC
         ports:
           - 3306:3306
