@@ -38,12 +38,12 @@ jobs:
     - name: Run tests
       run: |
         cd tests
-        pytest test_api.py -v
+        pytest test_api.py -v --junitxml=../pytest-report.xml
 
     - name: Upload test results
       if: failure()
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: ./pytest-report.xml
+        path: pytest-report.xml
 
