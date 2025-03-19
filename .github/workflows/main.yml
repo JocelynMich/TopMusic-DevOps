@@ -16,12 +16,10 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: K1m_D0kja20KAJ2M
           MYSQL_DATABASE: MUSIC
         ports:
-          - 3306:3306
+          - 3307:3306
 
     steps:
     - name: Check out the repository
