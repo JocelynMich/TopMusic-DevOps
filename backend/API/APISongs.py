@@ -23,7 +23,7 @@ def connect_to_db():
             mydb = mysql.connector.connect(
                 host=os.getenv("DB_HOST", "localhost"), # this matches your service name
                 user=os.getenv("DB_USER", "root"),
-                port=os.getenv('DB_PORT', '3307'),
+                port=os.getenv('DB_PORT', '3306'),
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
                 database=os.getenv("DB_NAME", "MUSIC")
         )
@@ -46,9 +46,18 @@ class Song(BaseModel):
 
 @app.get("/", response_model=List[Song])
 def get_songs():
-    cursor = mydb.cursor()
-    cursor.execute("SELECT ranking, song, artist, image_url FROM billboard")
-    songs = cursor.fetchall()
-    cursor.close()
-    return [{"ranking": ranking, "song": song, "artist": artist, "image_url": image_url} for ranking, song, artist, image_url in songs]
-   
+    try:
+        cursor = mydb.cursor()
+        cursor.execute("SELECT ranking, song, artist, image_url FROM billboard")
+        songs = cursor.fetchall()
+        cursor.close()
+
+        # Agrega logs para depuración
+        print(f"Retrieved {len(songs)} songs from the database")
+        for song in songs:
+            print(song)
+
+        return [{"ranking": ranking, "song": song, "artist": artist, "image_url": image_url} for ranking, song, artist, image_url in songs]
+    except Exception as e:
+        print(f"Error fetching songs: {e}")
+        return {"error": "An error occurred while fetching songs"}

@@ -28,7 +28,7 @@ def connect_to_db():
             mydb = mysql.connector.connect(
                 host=os.getenv("DB_HOST", "localhost"), # this matches your service name
                 user=os.getenv("DB_USER", "root"),
-                port=os.getenv('DB_PORT', '3307'),
+                port=os.getenv('DB_PORT', '3306'),
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
                 database=os.getenv("DB_NAME", "MUSIC")
         )

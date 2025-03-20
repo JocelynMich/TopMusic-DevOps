@@ -7,16 +7,40 @@ import os
 import time
 
 app = FastAPI()
+import mysql.connector
+import os
+
+def create_table_if_not_exists():
+    # Use a temporary connection to create the table
+    temp_db = mysql.connector.connect(
+        host=os.getenv("DB_HOST", "localhost"),
+        port=os.getenv('DB_PORT', '3306'),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
+        database=os.getenv("DB_NAME", "MUSIC")
+    )
+    cursor = temp_db.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS billboard (
+            ranking INT NOT NULL,
+            song VARCHAR(255) NOT NULL,
+            artist VARCHAR(255) NOT NULL,
+            image_url VARCHAR(255)
+        )
+    """)
+    temp_db.commit()
+    cursor.close()
+    temp_db.close()
 
 def connect_to_db():
     retries = 5
-    delay = 5  # seconds
+    delay = 10  # seconds
     for i in range(retries):
         try:
             mydb = mysql.connector.connect(
                 host=os.getenv("DB_HOST", "localhost"), # this matches your service name
                 user=os.getenv("DB_USER", "root"),
-                port=os.getenv('DB_PORT', '3307'),
+                port=os.getenv('DB_PORT', '3306'),
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
                 database=os.getenv("DB_NAME", "MUSIC")
         )
@@ -28,8 +52,8 @@ def connect_to_db():
             else:
                 raise
 
+create_table_if_not_exists()
 mydb = connect_to_db()
-
 class Song(BaseModel):
     ranking: int
     song: str
