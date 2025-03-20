@@ -8,7 +8,5 @@ spotipy==2.25.0
 pluggy
 httpx
 mysql-connector-python==9.2.0
-<<<<<<< HEAD:backend/requirements.txt
 uvicorn
-=======
->>>>>>> b7fd8be08c8a387b1e3f6e5f2ceb9e6d5a3bb173:requirements.txt
+
