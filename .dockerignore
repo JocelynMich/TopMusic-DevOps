@@ -1,0 +1,7 @@
+# Ignorar archivos temporales y de configuración innecesarios
+*.log
+.git
+.vscode
+__pycache__
+*.pyc
+*.pyo

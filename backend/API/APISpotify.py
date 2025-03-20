@@ -3,6 +3,8 @@ import mysql.connector
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from fastapi.middleware.cors import CORSMiddleware
+import os, time
+
 
 app = FastAPI()
 
@@ -18,15 +20,30 @@ SPOTIPY_CLIENT_ID = '6d04e8ce1038469582e5ea5bcb291b4f'
 SPOTIPY_CLIENT_SECRET = '3df73498b85141a8ab22e1b325d52af2'
 SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback'
 
+def connect_to_db():
+    retries = 5
+    delay = 5  # seconds
+    for i in range(retries):
+        try:
+            mydb = mysql.connector.connect(
+                host=os.getenv("DB_HOST", "localhost"), # this matches your service name
+                user=os.getenv("DB_USER", "root"),
+                port=os.getenv('DB_PORT', '3307'),
+                password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
+                database=os.getenv("DB_NAME", "MUSIC")
+        )
+            return mydb
+        except mysql.connector.Error as err:
+            print(f"Connection attempt {i + 1} failed: {err}")
+            if i < retries - 1:
+                time.sleep(delay)
+            else:
+                raise
+
+mydb = connect_to_db()
+
 @app.get("/")
 def create_playlist():
-    
-        mydb = mysql.connector.connect(
-                host='localhost',
-                user='root',
-                password='K1m_D0kja20KAJ2M',
-                database='MUSIC'
-        )
 
         cursor = mydb.cursor()
         cursor.execute("SELECT song FROM billboard")
