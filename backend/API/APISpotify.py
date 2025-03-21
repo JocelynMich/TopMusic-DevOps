@@ -4,9 +4,11 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from fastapi.middleware.cors import CORSMiddleware
 import os, time
-
+from loguru import logger
 
 app = FastAPI()
+
+logger.add("logs/TopMusic.log", rotation="10 MB", retention="30 days", level="INFO")
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,7 +24,7 @@ SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback'
 
 def connect_to_db():
     retries = 5
-    delay = 5  # seconds
+    delay = 10  # seconds
     for i in range(retries):
         try:
             mydb = mysql.connector.connect(
@@ -32,9 +34,10 @@ def connect_to_db():
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
                 database=os.getenv("DB_NAME", "MUSIC")
         )
+            logger.info("Connectado a la base de datos exitosamente")
             return mydb
         except mysql.connector.Error as err:
-            print(f"Connection attempt {i + 1} failed: {err}")
+            logger.error(f"Intento de conexión {i + 1} fallido: {err}")
             if i < retries - 1:
                 time.sleep(delay)
             else:
@@ -44,35 +47,39 @@ mydb = connect_to_db()
 
 @app.get("/")
 def create_playlist():
+    try:
+                logger.info("Obteniendo datos de canciones de la tabla 'billboard'")
+                cursor = mydb.cursor()
+                cursor.execute("SELECT song FROM billboard")
+                songs = cursor.fetchall()
+                cursor.close()
+                mydb.close()
 
-        cursor = mydb.cursor()
-        cursor.execute("SELECT song FROM billboard")
-        songs = cursor.fetchall()
-        cursor.close()
-        mydb.close()
+                sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+                    client_id=SPOTIPY_CLIENT_ID,
+                    client_secret=SPOTIPY_CLIENT_SECRET,
+                    redirect_uri=SPOTIPY_REDIRECT_URI,
+                    scope="playlist-modify-private"
+                    ))
 
-            # Initialize Spotipy client
-        sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-            client_id=SPOTIPY_CLIENT_ID,
-            client_secret=SPOTIPY_CLIENT_SECRET,
-            redirect_uri=SPOTIPY_REDIRECT_URI,
-            scope="playlist-modify-private"
-            ))
+                user_id = sp.current_user()["id"]
 
-        user_id = sp.current_user()["id"]
+                song_uris = []
+                for song in songs:
+                    result = sp.search(q=f"track:{song[0]}", type="track", limit=1)
+                    try:
+                        uri = result["tracks"]["items"][0]["uri"]
+                        song_uris.append(uri)
+                    except IndexError:
+                        logger.warning(f"{song[0]} no existe en Spotify. Saltar.")
 
-        song_uris = []
-        for song in songs:
-            result = sp.search(q=f"track:{song[0]}", type="track", limit=1)
-            try:
-                uri = result["tracks"]["items"][0]["uri"]
-                song_uris.append(uri)
-            except IndexError:
-                print(f"{song[0]} no existe en Spotify. Saltar.")
+                playlist = sp.user_playlist_create(user=user_id, name="Top Weekly Songs", public=False)
+                sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
+                logger.info("La playlist se creó exitosamente")
 
-        playlist = sp.user_playlist_create(user=user_id, name="Top Weekly Songs", public=False)
-
-        sp.playlist_add_items(playlist_id=playlist["id"], items=song_uris)
-        return {"message": "Playlist created successfully", "playlist_url": playlist["external_urls"]["spotify"]}
+                return {"message": "Playlist created successfully", "playlist_url": playlist["external_urls"]["spotify"]}
+    except Exception as e:
+        logger.error(f"Error al crear la playlist: {e}")
+        return {"error": "Un error ocurrió mientras se hacía la playlist"}
 
 

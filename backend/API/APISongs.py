@@ -4,8 +4,12 @@ import mysql.connector
 from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 import os, time
+from loguru import logger
 
 app = FastAPI()
+
+logger.add("logs/TopMusic.log", rotation="10 MB", retention="30 days", level="INFO")
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,7 +21,7 @@ app.add_middleware(
 
 def connect_to_db():
     retries = 5
-    delay = 5  # seconds
+    delay = 10  # seconds
     for i in range(retries):
         try:
             mydb = mysql.connector.connect(
@@ -27,16 +31,16 @@ def connect_to_db():
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
                 database=os.getenv("DB_NAME", "MUSIC")
         )
+            logger.info("Connectado a la base de datos exitosamente")
             return mydb
         except mysql.connector.Error as err:
-            print(f"Connection attempt {i + 1} failed: {err}")
+            logger.error(f"Intento de conexión {i + 1} fallido: {err}")
             if i < retries - 1:
                 time.sleep(delay)
             else:
                 raise
 
 mydb = connect_to_db()
-
 
 class Song(BaseModel):
     ranking: int
@@ -48,15 +52,13 @@ class Song(BaseModel):
 def get_songs():
     try:
         cursor = mydb.cursor()
+        logger.info("Recogiendo datos de la base de datos")
         cursor.execute("SELECT ranking, song, artist, image_url FROM billboard")
         songs = cursor.fetchall()
         cursor.close()
 
         # Agrega logs para depuración
-        print(f"Retrieved {len(songs)} songs from the database")
-        for song in songs:
-            print(song)
-
+        logger.info(f"Datos obtenidos {len(songs)} de canciones de la base de datos")
         return [{"ranking": ranking, "song": song, "artist": artist, "image_url": image_url} for ranking, song, artist, image_url in songs]
     except Exception as e:
         print(f"Error fetching songs: {e}")

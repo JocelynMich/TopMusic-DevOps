@@ -5,13 +5,14 @@ from bs4 import BeautifulSoup
 import mysql.connector
 import os
 import time
+from loguru import logger
 
 app = FastAPI()
-import mysql.connector
-import os
+
+logger.add("logs/TopMusic.log", rotation="10 MB", retention="30 days", level="INFO")
 
 def create_table_if_not_exists():
-    # Use a temporary connection to create the table
+    # Metodo para crear una tabla en caso de que no exista en el contenedor
     temp_db = mysql.connector.connect(
         host=os.getenv("DB_HOST", "localhost"),
         port=os.getenv('DB_PORT', '3306'),
@@ -21,16 +22,18 @@ def create_table_if_not_exists():
     )
     cursor = temp_db.cursor()
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS billboard (
-            ranking INT NOT NULL,
-            song VARCHAR(255) NOT NULL,
-            artist VARCHAR(255) NOT NULL,
-            image_url VARCHAR(255)
-        )
-    """)
+            CREATE TABLE IF NOT EXISTS billboard (
+                ranking INT NOT NULL,
+                song VARCHAR(255) NOT NULL,
+                artist VARCHAR(255) NOT NULL,
+                image_url VARCHAR(255)
+            )
+        """)
     temp_db.commit()
     cursor.close()
     temp_db.close()
+    logger.info("Tabla 'billboard' se ha creado o ya existe en el schema")
+
 
 def connect_to_db():
     retries = 5
@@ -44,9 +47,10 @@ def connect_to_db():
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),
                 database=os.getenv("DB_NAME", "MUSIC")
         )
+            logger.info("Connectado a la base de datos exitosamente")
             return mydb
         except mysql.connector.Error as err:
-            print(f"Connection attempt {i + 1} failed: {err}")
+            logger.error(f"Intento de conexión {i + 1} fallido: {err}")
             if i < retries - 1:
                 time.sleep(delay)
             else:
@@ -54,6 +58,7 @@ def connect_to_db():
 
 create_table_if_not_exists()
 mydb = connect_to_db()
+
 class Song(BaseModel):
     ranking: int
     song: str
@@ -62,14 +67,14 @@ class Song(BaseModel):
 
 @app.get("/", response_model=list[Song])
 async def scrape_data():
+    logger.info("Empezo el proceso de web-scraping")
     header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0"}
     billboard_url = "https://www.billboard.com/charts/hot-100/"
     response = requests.get(url=billboard_url, headers=header)
 
     if response.status_code == 200:
         cursor = mydb.cursor()
-
-        # Delete previous data in the table before inserting new data
+        logger.info("Limpiando los datos antiguos de la tabla billboard")
         cursor.execute("DELETE FROM billboard")
         mydb.commit()
 
@@ -85,7 +90,7 @@ async def scrape_data():
         artist_names = artist_names[:15]
         image_urls = image_urls[:15]
 
-        # Insert the data into the database
+        logger.info(f"Scraped {len(song_names)} canciones de la página Billboard")
         for i in range(len(song_names)):
             cursor.execute("""
             INSERT INTO billboard(ranking, song, artist, image_url)
@@ -102,7 +107,10 @@ async def scrape_data():
                 'artist': artist_names[i],
                 'image_url': image_urls[i]
             })
-
+        logger.info("El proceso de scraping se completo exitosamente")
         cursor.close()
         return data
+    else:
+        logger.error(f"Error de recoger datos de la página Billboard: HTTP {response.status_code}")
+        return {"error": "Error de recoger datos de la página Billboard"}
 

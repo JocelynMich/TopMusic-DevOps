@@ -13,13 +13,13 @@ services:
       - devops4-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 40s
+      interval: 50s
       timeout: 30s
       retries: 20
 
   backend:
     build:
-      context: ./backend  # Path to your backend Dockerfile
+      context: ./backend 
       dockerfile: Dockerfile
     container_name: devops4-backend
     environment:
@@ -38,7 +38,7 @@ services:
 
   frontend:
     build:
-      context: ./topmusic  # Path to your frontend Dockerfile
+      context: ./topmusic 
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
