@@ -1,0 +1,39 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  snyk:
+    name: Escaneo de seguridad con Snyk
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Instalar Snyk CLI
+        run: npm install -g snyk
+
+      - name: Autenticarse con Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+      - name: Escanear todas las carpetas detectables
+        run: snyk test --all-projects --severity-threshold=medium
+
+      - name: Generar reporte en JSON
+        run: snyk test --all-projects --json > snyk-report.json
+
+      - name: Subir artefacto con el reporte
+        uses: actions/upload-artifact@v3
+        with:
+          name: snyk-report
+          path: snyk-report.json
