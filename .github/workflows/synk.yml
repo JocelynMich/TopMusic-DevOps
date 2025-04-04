@@ -23,6 +23,9 @@ jobs:
       - name: Instalar Snyk CLI
         run: npm install -g snyk
 
+      - name: Instalar dependencias de Python
+        run: pip install -r backend/requirements.txt
+
       - name: Escanear todas las carpetas detectables
         env: 
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
