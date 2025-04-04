@@ -1,0 +1,14 @@
+2025-04-04 00:13:08.320 | INFO     | __main__:<module>:19 - Probando escritura en archivo de log
+2025-04-04 06:23:38.861 | INFO     | API.APIScrape:<module>:19 - Probando escritura en archivo de log
+2025-04-04 06:23:40.562 | INFO     | API.APIScrape:create_table_if_not_exists:42 - Tabla 'billboard' se ha creado o ya existe en el schema
+2025-04-04 06:23:40.931 | INFO     | API.APIScrape:connect_to_db:57 - Connectado a la base de datos exitosamente
+2025-04-04 06:23:41.325 | INFO     | API.APISongs:connect_to_db:39 - Connectado a la base de datos exitosamente
+2025-04-04 06:23:42.142 | INFO     | API.APISpotify:connect_to_db:43 - Connectado a la base de datos exitosamente
+2025-04-04 06:23:57.299 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-04 06:23:57.356 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-04 06:24:01.982 | INFO     | API.APIScrape:scrape_data:77 - Empezo el proceso de web-scraping
+2025-04-04 06:24:02.394 | INFO     | API.APIScrape:scrape_data:84 - Limpiando los datos antiguos de la tabla billboard
+2025-04-04 06:24:06.011 | INFO     | API.APIScrape:scrape_data:100 - Scraped 15 canciones de la página Billboard
+2025-04-04 06:24:06.128 | INFO     | API.APIScrape:scrape_data:117 - El proceso de scraping se completo exitosamente
+2025-04-04 06:25:25.414 | INFO     | API.APISpotify:create_playlist:57 - Obteniendo datos de canciones de la tabla 'billboard'
+2025-04-04 06:25:30.308 | INFO     | API.APISpotify:create_playlist:84 - La playlist se creó exitosamente

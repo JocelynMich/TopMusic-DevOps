@@ -5,11 +5,16 @@ from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 import os, time
 from loguru import logger
+from pathlib import Path
+
 
 app = FastAPI()
 
-logger.add("logs/TopMusic.log", rotation="10 MB", retention="30 days", level="INFO")
+LOGS_DIR = Path(__file__).resolve().parent.parent / "logs"
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
+log_file = LOGS_DIR / f"{Path(__file__).stem}.log"
+logger.add(log_file, rotation="10 MB", retention="30 days", level="INFO", enqueue=True)
 
 app.add_middleware(
     CORSMiddleware,

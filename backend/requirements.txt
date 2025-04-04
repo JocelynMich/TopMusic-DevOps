@@ -10,3 +10,4 @@ httpx
 mysql-connector-python==9.2.0
 uvicorn
 loguru
+prometheus-client

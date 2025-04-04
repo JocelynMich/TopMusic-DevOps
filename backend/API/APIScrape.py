@@ -3,13 +3,20 @@ from pydantic import BaseModel
 import requests
 from bs4 import BeautifulSoup
 import mysql.connector
-import os
+import os, sys
 import time
 from loguru import logger
+from pathlib import Path
+
 
 app = FastAPI()
+LOGS_DIR = Path(__file__).resolve().parent.parent / "logs"
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
-logger.add("logs/TopMusic.log", rotation="10 MB", retention="30 days", level="INFO")
+log_file = LOGS_DIR / f"{Path(__file__).stem}.log"
+logger.add(log_file, rotation="10 MB", retention="30 days", level="INFO", enqueue=True)
+
+logger.info("Probando escritura en archivo de log")
 
 def create_table_if_not_exists():
     # Metodo para crear una tabla en caso de que no exista en el contenedor
