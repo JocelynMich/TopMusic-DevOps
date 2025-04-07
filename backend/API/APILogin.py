@@ -8,7 +8,7 @@ from loguru import logger
 from pathlib import Path
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
-from fastapi import Depends, Header
+from fastapi import Header
 
 app = FastAPI()
 

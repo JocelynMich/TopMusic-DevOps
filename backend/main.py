@@ -5,9 +5,6 @@ from API.APISpotify import app as spotify_app
 from API.APIRegister import app as register_app
 from API.APILogin import app as login_app
 from prometheus_client import make_asgi_app, Counter, Histogram
-from jose import JWTError, jwt
-from datetime import datetime, timedelta
-from fastapi import Depends, Header
 
 app = FastAPI()
 

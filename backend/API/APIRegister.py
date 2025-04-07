@@ -19,7 +19,7 @@ logger.info("Probando escritura en archivo de log")
 
 def connect_to_db():
     retries = 5
-    delay = 10  # seconds
+    delay = 10  
     for i in range(retries):
         try:
             mydb = mysql.connector.connect(

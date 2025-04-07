@@ -19,7 +19,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: K1m_D0kja20KAJ2M
           MYSQL_DATABASE: MUSIC
         ports:
-          - 3306:3306  # Cambia el puerto a 3306 para que coincida con la configuración del backend
+          - 3306:3306  
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
