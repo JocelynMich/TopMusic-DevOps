@@ -1,55 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from 'react';
+import UserContext from './auth';
 import '../styles/spotify.css';
 
 const SpotifyPlaylistCreator = () => {
   const [playlistUrl, setPlaylistUrl] = useState(null);
   const [error, setError] = useState(null);
+  const { user } = useContext(UserContext);
 
   const handleCreatePlaylist = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/create_playlist/", {
-        method: "GET",
+      const response = await fetch('http://127.0.0.1:8000/create_playlist/', {
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
+          token: user.token,
         },
       });
-
       const data = await response.json();
-
       if (response.ok) {
         setPlaylistUrl(data.playlist_url);
         setError(null);
       } else {
-        setError("Error creating playlist.");
+        setError(data.error || 'Error creating playlist.');
       }
-    } catch (error) {
-      setError("Failed to connect to the API.");
-      console.error("Fetch error:", error);
+    } catch (err) {
+      setError('Error de red');
     }
   };
 
+  if (!user || user.role !== 'admin') return null;
+
   return (
-    <div className="spotify-container">
-      <div className="bannerS">
-        <h1>Create Your Spotify Playlist</h1>
-      </div>
-      <div className="contentS">
-        <p>Click the button below to generate a playlist from the top songs!</p>
-        <button className="create-button" onClick={handleCreatePlaylist}>
-          Create Playlist
-        </button>
-        {playlistUrl && (
-          <p>
-            Playlist created! 🎵{" "}
-            <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
-              Open in Spotify
-            </a>
-          </p>
-        )}
-        {error && <p className="error-message">{error}</p>}
+    <div className="spotify-container full-height">
+      <div className="banner-contentS no-shadow">
+        <div className="playlist-section">
+          <button className="green-button" onClick={handleCreatePlaylist}>
+            Crear Playlist
+          </button>
+          {playlistUrl && (
+            <div className="playlist-link">
+              <p className="title-white">¡Playlist creada!</p>
+              <a
+                className="spotify-link"
+                href={playlistUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir en Spotify
+              </a>
+            </div>
+          )}
+          {error && <p className="error-message">{error}</p>}
+        </div>
       </div>
     </div>
   );
 };
-
 export default SpotifyPlaylistCreator;

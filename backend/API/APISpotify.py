@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, Header
 import mysql.connector
+from jose import jwt, JWTError
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,6 +8,18 @@ import os, time, sys
 from loguru import logger
 from pathlib import Path
 
+SECRET_KEY = "2530"
+ALGORITHM = "HS256"
+
+def verify_admin(token: str = Header(...)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        role = payload.get("role")
+        if role != "admin":
+            logger.warning("Acceso restringido a administradores")
+        return payload
+    except JWTError:
+        logger.warning("Token no válido o expirado, intenta de nuevo")
 
 app = FastAPI()
 
@@ -52,7 +65,7 @@ def connect_to_db():
 mydb = connect_to_db()
 
 @app.get("/")
-def create_playlist():
+def create_playlist(payload: dict = Depends(verify_admin)):
     try:
                 logger.info("Obteniendo datos de canciones de la tabla 'billboard'")
                 cursor = mydb.cursor()

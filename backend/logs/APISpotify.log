@@ -8,3 +8,142 @@
 2025-04-04 06:24:06.128 | INFO     | API.APIScrape:scrape_data:117 - El proceso de scraping se completo exitosamente
 2025-04-04 06:25:25.414 | INFO     | API.APISpotify:create_playlist:57 - Obteniendo datos de canciones de la tabla 'billboard'
 2025-04-04 06:25:30.308 | INFO     | API.APISpotify:create_playlist:84 - La playlist se creó exitosamente
+2025-04-04 17:27:53.614 | INFO     | API.APISpotify:connect_to_db:43 - Connectado a la base de datos exitosamente
+2025-04-04 17:28:22.455 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-04 17:28:22.565 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-04 17:28:28.418 | INFO     | API.APIScrape:scrape_data:77 - Empezo el proceso de web-scraping
+2025-04-04 17:28:29.007 | INFO     | API.APIScrape:scrape_data:84 - Limpiando los datos antiguos de la tabla billboard
+2025-04-04 17:28:39.109 | INFO     | API.APIScrape:scrape_data:100 - Scraped 15 canciones de la página Billboard
+2025-04-04 17:28:39.174 | INFO     | API.APIScrape:scrape_data:117 - El proceso de scraping se completo exitosamente
+2025-04-06 07:27:38.092 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-06 07:27:38.136 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-06 07:27:38.178 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-06 07:27:53.475 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 07:27:53.542 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-06 07:28:05.159 | INFO     | API.APIRegister:connect_to_db:32 - Connectado a la base de datos exitosamente
+2025-04-06 07:28:05.171 | INFO     | API.APIRegister:register_user:71 - Hashear la contraseña
+2025-04-06 07:28:05.825 | INFO     | API.APIRegister:register_user:75 - Insertar el usuario a la tabla de usuarios
+2025-04-06 07:28:05.843 | INFO     | API.APIRegister:register_user:82 - Usuario '' registrado correctamente con rol 'admin'
+2025-04-06 07:28:24.599 | INFO     | API.APIRegister:connect_to_db:32 - Connectado a la base de datos exitosamente
+2025-04-06 07:28:24.605 | INFO     | API.APIRegister:register_user:71 - Hashear la contraseña
+2025-04-06 07:28:25.092 | INFO     | API.APIRegister:register_user:75 - Insertar el usuario a la tabla de usuarios
+2025-04-06 07:28:25.104 | INFO     | API.APIRegister:register_user:82 - Usuario 'admin' registrado correctamente con rol 'admin'
+2025-04-06 07:28:44.358 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 07:28:44.365 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-06 07:29:09.859 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 07:29:09.867 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-06 09:02:45.584 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-06 09:02:45.622 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-06 09:02:45.669 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-06 09:03:05.593 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 09:03:05.658 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-06 09:03:20.789 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:03:20.793 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:03:21.203 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-06 09:03:52.906 | INFO     | API.APIRegister:connect_to_db:32 - Connectado a la base de datos exitosamente
+2025-04-06 09:03:52.922 | INFO     | API.APIRegister:register_user:68 - El usuario existe en la tabla
+2025-04-06 09:03:52.926 | INFO     | API.APIRegister:register_user:71 - Hashear la contraseña
+2025-04-06 09:03:53.557 | INFO     | API.APIRegister:register_user:75 - Insertar el usuario a la tabla de usuarios
+2025-04-06 09:03:53.564 | ERROR    | API.APIRegister:register_user:85 - Error al registrar usuario 'admin': 1062 (23000): Duplicate entry 'admin' for key 'users.username'
+2025-04-06 09:03:59.151 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:03:59.154 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:03:59.815 | WARNING  | API.APILogin:login_user:98 - Intento de login fallido: contraseña incorrecta para usuario 'admin'
+2025-04-06 09:03:59.819 | ERROR    | API.APILogin:login_user:101 - Error durante el login de usuario 'admin': 401: Usuario o contraseña incorrectos
+2025-04-06 09:04:05.214 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:04:05.217 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:04:06.109 | WARNING  | API.APILogin:login_user:98 - Intento de login fallido: contraseña incorrecta para usuario 'admin'
+2025-04-06 09:04:06.120 | ERROR    | API.APILogin:login_user:101 - Error durante el login de usuario 'admin': 401: Usuario o contraseña incorrectos
+2025-04-06 09:04:06.481 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:04:06.490 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:04:07.499 | WARNING  | API.APILogin:login_user:98 - Intento de login fallido: contraseña incorrecta para usuario 'admin'
+2025-04-06 09:04:07.506 | ERROR    | API.APILogin:login_user:101 - Error durante el login de usuario 'admin': 401: Usuario o contraseña incorrectos
+2025-04-06 09:04:10.783 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:04:10.788 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:04:11.260 | WARNING  | API.APILogin:login_user:98 - Intento de login fallido: contraseña incorrecta para usuario 'admin'
+2025-04-06 09:04:11.264 | ERROR    | API.APILogin:login_user:101 - Error durante el login de usuario 'admin': 401: Usuario o contraseña incorrectos
+2025-04-06 09:04:15.910 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:04:15.920 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:04:16.666 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-06 09:04:26.578 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 09:04:26.583 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-06 09:04:30.340 | INFO     | API.APIScrape:scrape_data:76 - Empezo el proceso de web-scraping
+2025-04-06 09:04:30.823 | INFO     | API.APIScrape:scrape_data:83 - Limpiando los datos antiguos de la tabla billboard
+2025-04-06 09:04:32.945 | INFO     | API.APIScrape:scrape_data:99 - Scraped 15 canciones de la página Billboard
+2025-04-06 09:04:32.970 | INFO     | API.APIScrape:scrape_data:116 - El proceso de scraping se completo exitosamente
+2025-04-06 09:04:40.587 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 09:04:40.589 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-06 09:05:48.912 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-06 09:05:48.929 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-06 09:05:48.945 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-06 09:05:57.280 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-06 09:05:57.283 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 15 de canciones de la base de datos
+2025-04-06 09:06:07.978 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:06:07.980 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:06:08.205 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-06 09:06:09.565 | INFO     | API.APISpotify:create_playlist:70 - Obteniendo datos de canciones de la tabla 'billboard'
+2025-04-06 09:06:14.089 | INFO     | API.APISpotify:create_playlist:97 - La playlist se creó exitosamente
+2025-04-06 09:07:06.692 | INFO     | API.APIRegister:connect_to_db:32 - Connectado a la base de datos exitosamente
+2025-04-06 09:07:06.695 | INFO     | API.APIRegister:register_user:71 - Hashear la contraseña
+2025-04-06 09:07:06.933 | INFO     | API.APIRegister:register_user:75 - Insertar el usuario a la tabla de usuarios
+2025-04-06 09:07:06.940 | INFO     | API.APIRegister:register_user:82 - Usuario 'user1' registrado correctamente con rol 'user'
+2025-04-06 09:07:11.795 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-06 09:07:11.797 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-06 09:07:12.039 | INFO     | API.APILogin:login_user:95 - Usuario 'user1' inició sesión correctamente con rol 'user'
+2025-04-07 02:00:10.008 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-07 02:00:10.173 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-07 02:00:10.338 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-07 02:01:18.726 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-07 02:01:18.902 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-07 02:01:25.159 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 02:01:25.165 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 02:01:25.556 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-07 02:01:52.164 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 02:01:52.172 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 02:01:53.395 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-07 02:40:45.481 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-07 02:40:46.120 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-07 02:40:47.247 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-07 02:41:50.835 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-07 02:41:51.005 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-07 02:42:00.464 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 02:42:00.471 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 02:42:01.416 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-07 02:50:27.349 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-07 02:50:27.549 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-07 02:50:27.750 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-07 02:51:43.621 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-07 02:51:43.783 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-07 02:52:00.202 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 02:52:00.208 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 02:52:01.668 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-07 02:52:01.848 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 02:52:01.855 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 02:52:02.991 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-07 03:11:32.156 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-07 03:11:32.226 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-07 03:11:32.317 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-07 03:12:34.672 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-07 03:12:34.703 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-07 03:12:38.126 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-07 03:12:38.130 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 0 de canciones de la base de datos
+2025-04-07 03:12:39.941 | INFO     | API.APIScrape:scrape_data:76 - Empezo el proceso de web-scraping
+2025-04-07 03:12:40.555 | INFO     | API.APIScrape:scrape_data:83 - Limpiando los datos antiguos de la tabla billboard
+2025-04-07 03:12:42.642 | INFO     | API.APIScrape:scrape_data:99 - Scraped 15 canciones de la página Billboard
+2025-04-07 03:12:42.679 | INFO     | API.APIScrape:scrape_data:116 - El proceso de scraping se completo exitosamente
+2025-04-07 03:14:04.160 | INFO     | API.APISpotify:connect_to_db:56 - Connectado a la base de datos exitosamente
+2025-04-07 03:14:04.181 | INFO     | API.APIRegister:<module>:18 - Probando escritura en archivo de log
+2025-04-07 03:14:04.207 | INFO     | API.APILogin:<module>:21 - Probando escritura en archivo de log
+2025-04-07 03:14:22.588 | INFO     | API.APISongs:get_songs:60 - Recogiendo datos de la base de datos
+2025-04-07 03:14:22.595 | INFO     | API.APISongs:get_songs:66 - Datos obtenidos 15 de canciones de la base de datos
+2025-04-07 03:14:30.566 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 03:14:30.571 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 03:14:31.218 | INFO     | API.APILogin:login_user:95 - Usuario 'admin' inició sesión correctamente con rol 'admin'
+2025-04-07 03:14:33.317 | INFO     | API.APISpotify:create_playlist:70 - Obteniendo datos de canciones de la tabla 'billboard'
+2025-04-07 03:14:39.034 | INFO     | API.APISpotify:create_playlist:97 - La playlist se creó exitosamente
+2025-04-07 03:15:05.388 | INFO     | API.APIRegister:connect_to_db:32 - Connectado a la base de datos exitosamente
+2025-04-07 03:15:05.395 | INFO     | API.APIRegister:register_user:71 - Hashear la contraseña
+2025-04-07 03:15:05.913 | INFO     | API.APIRegister:register_user:75 - Insertar el usuario a la tabla de usuarios
+2025-04-07 03:15:05.926 | INFO     | API.APIRegister:register_user:82 - Usuario 'user1' registrado correctamente con rol 'user'
+2025-04-07 03:15:10.805 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
+2025-04-07 03:15:10.808 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
+2025-04-07 03:15:11.557 | INFO     | API.APILogin:login_user:95 - Usuario 'user1' inició sesión correctamente con rol 'user'

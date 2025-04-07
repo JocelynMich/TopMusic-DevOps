@@ -3,8 +3,7 @@ from pydantic import BaseModel
 import requests
 from bs4 import BeautifulSoup
 import mysql.connector
-import os, sys
-import time
+import os,time
 from loguru import logger
 from pathlib import Path
 
@@ -48,7 +47,7 @@ def connect_to_db():
     for i in range(retries):
         try:
             mydb = mysql.connector.connect(
-                host=os.getenv("DB_HOST", "localhost"), # this matches your service name
+                host=os.getenv("DB_HOST", "localhost"), 
                 user=os.getenv("DB_USER", "root"),
                 port=os.getenv('DB_PORT', '3306'),
                 password=os.getenv("DB_PASSWORD", "K1m_D0kja20KAJ2M"),

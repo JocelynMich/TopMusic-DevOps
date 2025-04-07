@@ -1,80 +1,139 @@
-/* Contenedor principal */
 .spotify-container {
-   background-image: url("../img/spotifygradient.png");
-  display: flex;
+  background-image: url("../img/spotifygradient.png");
   background-size: cover;
+  background-position: center;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 40vh;
   color: white;
   text-align: center;
+  padding: 20px;
+  height: 50vh;
 }
 
-/* Banner */
-.bannerS {
-  background-position: center;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-/* Contenedor interno del banner */
 .banner-contentS {
   background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
+  padding: 30px 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Título dentro del banner */
-.bannerS h1 {
-  font-size: 2rem;
+.banner-contentS.no-shadow {
+  box-shadow: none;
+}
+
+.title-white {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.login-form-style {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.green-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.green-button:hover {
+  background-color: #1db954;
+}
+
+.green-button.outline {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+}
+
+.green-button.outline:hover {
+  background-color: #1db954;
+  color: black;
+}
+
+input, select {
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
+input::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+.error-message {
+  color: #ff4d4d;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.playlist-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.green-button.outline {
+  background-color: black;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+.green-button.outline:hover {
+  background-color: #1db954;
+  color: black;
+}
+
+.playlist-link {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.playlist-link p {
+  color: #1db954;
+  font-size: 1.1rem;
   margin-bottom: 8px;
 }
 
-/* Botón dentro del banner */
-.create-button {
-  background-color: #1db954;
+.spotify-link {
+  display: block;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  margin-top: 10px; /* Espacio entre el título y el botón */
-  margin-bottom: 10px;
-}
-
-.create-button:hover {
-  background-color: #1ed760;
-}
-
-/* Enlace de Spotify */
-.playlist-link {
-  margin-top: 20px;
-}
-
-a {
-  color: #000000;
   font-weight: bold;
   text-decoration: none;
+  font-size: 1rem;
 }
 
-a:hover {
+.spotify-link:hover {
   text-decoration: underline;
-}
-
-/* Mensajes de error */
-.error-message {
-  color: red;
-  margin-top: 10px;
+  color: #1db954;
 }
