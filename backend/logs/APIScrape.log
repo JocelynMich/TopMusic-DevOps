@@ -191,3 +191,4 @@
 2025-04-07 03:15:10.805 | INFO     | API.APILogin:connect_to_db:35 - Connectado a la base de datos exitosamente
 2025-04-07 03:15:10.808 | INFO     | API.APILogin:login_user:81 - Recolectando datos de los usuarios
 2025-04-07 03:15:11.557 | INFO     | API.APILogin:login_user:95 - Usuario 'user1' inició sesión correctamente con rol 'user'
+2025-04-06 21:28:46.888 | INFO     | API.APIScrape:<module>:18 - Probando escritura en archivo de log
